@@ -1,0 +1,7 @@
+export type Booking = {
+  bookingDate: Date;
+  createdAt: Date;
+  id: string;
+  travelingVia: string;
+  updatedAt: Date;
+};
