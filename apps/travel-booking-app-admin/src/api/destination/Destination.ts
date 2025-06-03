@@ -1,7 +1,4 @@
-import { Country } from "../country/Country";
-
 export type Destination = {
-  country?: Country | null;
   createdAt: Date;
   destinationName: string | null;
   id: string;

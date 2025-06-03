@@ -31,22 +31,8 @@ export class DestinationControllerBase {
     @common.Body() data: DestinationCreateInput
   ): Promise<Destination> {
     return await this.service.createDestination({
-      data: {
-        ...data,
-
-        country: data.country
-          ? {
-              connect: data.country,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
-        country: {
-          select: {
-            id: true,
-          },
-        },
-
         createdAt: true,
         destinationName: true,
         id: true,
@@ -66,12 +52,6 @@ export class DestinationControllerBase {
     return this.service.destinations({
       ...args,
       select: {
-        country: {
-          select: {
-            id: true,
-          },
-        },
-
         createdAt: true,
         destinationName: true,
         id: true,
@@ -92,12 +72,6 @@ export class DestinationControllerBase {
     const result = await this.service.destination({
       where: params,
       select: {
-        country: {
-          select: {
-            id: true,
-          },
-        },
-
         createdAt: true,
         destinationName: true,
         id: true,
@@ -125,22 +99,8 @@ export class DestinationControllerBase {
     try {
       return await this.service.updateDestination({
         where: params,
-        data: {
-          ...data,
-
-          country: data.country
-            ? {
-                connect: data.country,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
-          country: {
-            select: {
-              id: true,
-            },
-          },
-
           createdAt: true,
           destinationName: true,
           id: true,
@@ -170,12 +130,6 @@ export class DestinationControllerBase {
       return await this.service.deleteDestination({
         where: params,
         select: {
-          country: {
-            select: {
-              id: true,
-            },
-          },
-
           createdAt: true,
           destinationName: true,
           id: true,

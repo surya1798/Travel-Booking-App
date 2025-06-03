@@ -6,5 +6,4 @@ export type BookingOrderByInput = {
   id?: SortOrder;
   travelingVia?: SortOrder;
   updatedAt?: SortOrder;
-  userId?: SortOrder;
 };

@@ -31,25 +31,13 @@ export class BookingControllerBase {
     @common.Body() data: BookingCreateInput
   ): Promise<Booking> {
     return await this.service.createBooking({
-      data: {
-        ...data,
-
-        user: {
-          connect: data.user,
-        },
-      },
+      data: data,
       select: {
         bookingDate: true,
         createdAt: true,
         id: true,
         travelingVia: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -67,12 +55,6 @@ export class BookingControllerBase {
         id: true,
         travelingVia: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -91,12 +73,6 @@ export class BookingControllerBase {
         id: true,
         travelingVia: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (result === null) {
@@ -117,25 +93,13 @@ export class BookingControllerBase {
     try {
       return await this.service.updateBooking({
         where: params,
-        data: {
-          ...data,
-
-          user: {
-            connect: data.user,
-          },
-        },
+        data: data,
         select: {
           bookingDate: true,
           createdAt: true,
           id: true,
           travelingVia: true,
           updatedAt: true,
-
-          user: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -163,12 +127,6 @@ export class BookingControllerBase {
           id: true,
           travelingVia: true,
           updatedAt: true,
-
-          user: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {

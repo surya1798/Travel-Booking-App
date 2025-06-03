@@ -11,14 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  MaxLength,
-  IsOptional,
-  ValidateNested,
-} from "class-validator";
-import { DestinationWhereUniqueInput } from "../../destination/base/DestinationWhereUniqueInput";
-import { Type } from "class-transformer";
+import { IsString, MaxLength, IsOptional } from "class-validator";
 
 @InputType()
 class CountryUpdateInput {
@@ -45,18 +38,6 @@ class CountryUpdateInput {
     nullable: true,
   })
   countryName?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => DestinationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => DestinationWhereUniqueInput)
-  @IsOptional()
-  @Field(() => DestinationWhereUniqueInput, {
-    nullable: true,
-  })
-  destinations?: DestinationWhereUniqueInput | null;
 }
 
 export { CountryUpdateInput as CountryUpdateInput };

@@ -31,26 +31,11 @@ export class CountryControllerBase {
     @common.Body() data: CountryCreateInput
   ): Promise<Country> {
     return await this.service.createCountry({
-      data: {
-        ...data,
-
-        destinations: data.destinations
-          ? {
-              connect: data.destinations,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         countryCode: true,
         countryName: true,
         createdAt: true,
-
-        destinations: {
-          select: {
-            id: true,
-          },
-        },
-
         id: true,
         updatedAt: true,
       },
@@ -68,13 +53,6 @@ export class CountryControllerBase {
         countryCode: true,
         countryName: true,
         createdAt: true,
-
-        destinations: {
-          select: {
-            id: true,
-          },
-        },
-
         id: true,
         updatedAt: true,
       },
@@ -93,13 +71,6 @@ export class CountryControllerBase {
         countryCode: true,
         countryName: true,
         createdAt: true,
-
-        destinations: {
-          select: {
-            id: true,
-          },
-        },
-
         id: true,
         updatedAt: true,
       },
@@ -122,26 +93,11 @@ export class CountryControllerBase {
     try {
       return await this.service.updateCountry({
         where: params,
-        data: {
-          ...data,
-
-          destinations: data.destinations
-            ? {
-                connect: data.destinations,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           countryCode: true,
           countryName: true,
           createdAt: true,
-
-          destinations: {
-            select: {
-              id: true,
-            },
-          },
-
           id: true,
           updatedAt: true,
         },
@@ -169,13 +125,6 @@ export class CountryControllerBase {
           countryCode: true,
           countryName: true,
           createdAt: true,
-
-          destinations: {
-            select: {
-              id: true,
-            },
-          },
-
           id: true,
           updatedAt: true,
         },

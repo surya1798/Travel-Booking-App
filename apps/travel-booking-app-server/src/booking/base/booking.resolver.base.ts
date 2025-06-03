@@ -20,7 +20,6 @@ import { BookingFindUniqueArgs } from "./BookingFindUniqueArgs";
 import { CreateBookingArgs } from "./CreateBookingArgs";
 import { UpdateBookingArgs } from "./UpdateBookingArgs";
 import { DeleteBookingArgs } from "./DeleteBookingArgs";
-import { User } from "../../user/base/User";
 import { BookingService } from "../booking.service";
 @graphql.Resolver(() => Booking)
 export class BookingResolverBase {
@@ -59,13 +58,7 @@ export class BookingResolverBase {
   ): Promise<Booking> {
     return await this.service.createBooking({
       ...args,
-      data: {
-        ...args.data,
-
-        user: {
-          connect: args.data.user,
-        },
-      },
+      data: args.data,
     });
   }
 
@@ -76,13 +69,7 @@ export class BookingResolverBase {
     try {
       return await this.service.updateBooking({
         ...args,
-        data: {
-          ...args.data,
-
-          user: {
-            connect: args.data.user,
-          },
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -108,18 +95,5 @@ export class BookingResolverBase {
       }
       throw error;
     }
-  }
-
-  @graphql.ResolveField(() => User, {
-    nullable: true,
-    name: "user",
-  })
-  async getUser(@graphql.Parent() parent: Booking): Promise<User | null> {
-    const result = await this.service.getUser(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }

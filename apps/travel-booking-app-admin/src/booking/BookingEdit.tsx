@@ -1,16 +1,11 @@
 import * as React from "react";
-
 import {
   Edit,
   SimpleForm,
   EditProps,
   DateTimeInput,
   TextInput,
-  ReferenceInput,
-  SelectInput,
 } from "react-admin";
-
-import { UserTitle } from "../user/UserTitle";
 
 export const BookingEdit = (props: EditProps): React.ReactElement => {
   return (
@@ -18,9 +13,6 @@ export const BookingEdit = (props: EditProps): React.ReactElement => {
       <SimpleForm>
         <DateTimeInput label="booking_date" source="bookingDate" />
         <TextInput label="traveling_via" source="travelingVia" />
-        <ReferenceInput source="user.id" reference="User" label="user">
-          <SelectInput optionText={UserTitle} />
-        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );

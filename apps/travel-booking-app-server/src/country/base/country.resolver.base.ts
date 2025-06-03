@@ -20,7 +20,6 @@ import { CountryFindUniqueArgs } from "./CountryFindUniqueArgs";
 import { CreateCountryArgs } from "./CreateCountryArgs";
 import { UpdateCountryArgs } from "./UpdateCountryArgs";
 import { DeleteCountryArgs } from "./DeleteCountryArgs";
-import { Destination } from "../../destination/base/Destination";
 import { CountryService } from "../country.service";
 @graphql.Resolver(() => Country)
 export class CountryResolverBase {
@@ -59,15 +58,7 @@ export class CountryResolverBase {
   ): Promise<Country> {
     return await this.service.createCountry({
       ...args,
-      data: {
-        ...args.data,
-
-        destinations: args.data.destinations
-          ? {
-              connect: args.data.destinations,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -78,15 +69,7 @@ export class CountryResolverBase {
     try {
       return await this.service.updateCountry({
         ...args,
-        data: {
-          ...args.data,
-
-          destinations: args.data.destinations
-            ? {
-                connect: args.data.destinations,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -112,20 +95,5 @@ export class CountryResolverBase {
       }
       throw error;
     }
-  }
-
-  @graphql.ResolveField(() => Destination, {
-    nullable: true,
-    name: "destinations",
-  })
-  async getDestinations(
-    @graphql.Parent() parent: Country
-  ): Promise<Destination | null> {
-    const result = await this.service.getDestinations(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }

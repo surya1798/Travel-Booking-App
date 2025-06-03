@@ -1,7 +1,6 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type DestinationOrderByInput = {
-  countryId?: SortOrder;
   createdAt?: SortOrder;
   destinationName?: SortOrder;
   id?: SortOrder;

@@ -11,28 +11,17 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Country } from "../../country/base/Country";
 import {
-  ValidateNested,
-  IsOptional,
   IsDate,
   IsString,
   MaxLength,
+  IsOptional,
   IsBoolean,
 } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
 class Destination {
-  @ApiProperty({
-    required: false,
-    type: () => Country,
-  })
-  @ValidateNested()
-  @Type(() => Country)
-  @IsOptional()
-  country?: Country | null;
-
   @ApiProperty({
     required: true,
   })

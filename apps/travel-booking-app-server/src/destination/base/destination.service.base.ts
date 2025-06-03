@@ -10,11 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import {
-  Prisma,
-  Destination as PrismaDestination,
-  Country as PrismaCountry,
-} from "@prisma/client";
+import { Prisma, Destination as PrismaDestination } from "@prisma/client";
 
 export class DestinationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -49,13 +45,5 @@ export class DestinationServiceBase {
     args: Prisma.DestinationDeleteArgs
   ): Promise<PrismaDestination> {
     return this.prisma.destination.delete(args);
-  }
-
-  async getCountry(parentId: string): Promise<PrismaCountry | null> {
-    return this.prisma.destination
-      .findUnique({
-        where: { id: parentId },
-      })
-      .country();
   }
 }

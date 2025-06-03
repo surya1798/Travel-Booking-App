@@ -1,17 +1,13 @@
 import * as React from "react";
-
 import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
-  TextField,
   DateField,
+  TextField,
   BooleanField,
 } from "react-admin";
-
 import Pagination from "../Components/Pagination";
-import { COUNTRY_TITLE_FIELD } from "../country/CountryTitle";
 
 export const DestinationList = (props: ListProps): React.ReactElement => {
   return (
@@ -22,9 +18,6 @@ export const DestinationList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show" bulkActionButtons={false}>
-        <ReferenceField label="country" source="country.id" reference="Country">
-          <TextField source={COUNTRY_TITLE_FIELD} />
-        </ReferenceField>
         <DateField source="createdAt" label="Created At" />
         <TextField label="destination_name" source="destinationName" />
         <TextField label="ID" source="id" />

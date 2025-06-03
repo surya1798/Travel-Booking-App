@@ -13,8 +13,7 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
-import { DestinationWhereUniqueInput } from "../../destination/base/DestinationWhereUniqueInput";
+import { IsOptional } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 
 @InputType()
@@ -40,18 +39,6 @@ class CountryWhereInput {
     nullable: true,
   })
   countryName?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => DestinationWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => DestinationWhereUniqueInput)
-  @IsOptional()
-  @Field(() => DestinationWhereUniqueInput, {
-    nullable: true,
-  })
-  destinations?: DestinationWhereUniqueInput;
 
   @ApiProperty({
     required: false,

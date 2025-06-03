@@ -28,17 +28,6 @@ class DestinationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  countryId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   createdAt?: SortOrder;
 
   @ApiProperty({
